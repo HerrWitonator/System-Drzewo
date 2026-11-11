@@ -138,6 +138,34 @@ def wyjasnij_jak(baza, slad):
         kroki.append(opis)
     return kroki
 
+def zapytaj_z_dlaczego(atrybut, powod):
+        opis = baza["atrybuty"].get(atrybut, {})
+        podpowiedz = f" ({'/'.join(opis['wartosci'])})" if "wartosci" in opis else ""
+        while True:
+            odp = input(f"{opis.get('pytanie', atrybut)}{podpowiedz} ").strip()
+            if odp == "?":
+                if powod is not None:
+                    warunki = " ORAZ ".join(
+                        f"{a} {op} {w}" for a, op, w in powod["jesli"]
+                    )
+                    print(f"Dlaczego? Sprawdzam regułę {powod['id']}:")
+                    print(f"  JEŻELI {warunki}, TO {powod['to'][0]} = {powod['to'][1]}")
+                    if powod.get("metafora"):
+                        print(" ", powod["metafora"])
+                else:
+                    print("Dlaczego? Ta odpowiedź jest potrzebna do ustalenia celu:", cel)
+                continue
+            if opis.get("typ") == "liczba":
+                try:
+                    return float(odp.replace(",", "."))
+                except ValueError:
+                    print("   Podaj liczbę lub ?")
+                    continue
+            if "wartosci" in opis and odp not in opis["wartosci"]:
+                print("   Dozwolone:", ", ".join(opis["wartosci"]), "lub ?")
+                continue
+            return odp
+
 
 if __name__ == "__main__":
     # Część 5 instrukcji: tu podmieniasz plik bazy i przykładowe fakty na swoje.
@@ -156,8 +184,18 @@ if __name__ == "__main__":
     print("=== Wnioskowanie w przód ===")
     fakty, slad = wnioskuj_w_przod(baza, FAKTY)
     print("Wynik:", fakty.get(cel), "| reguły:", " -> ".join(slad))
+    print("Jak doszedłem do wniosku?")
+    for krok in wyjasnij_jak(baza, slad):
+        print(" -", krok)
 
     print("\n=== Wnioskowanie wstecz ===")
+    print("Wpisz ? przy dowolnym pytaniu, aby dowiedzieć się, dlaczego zostało zadane.")
     slad = []
-    print("Polecam:", wnioskuj_wstecz(baza, cel, {}, zapytaj_konsola(baza), slad))
+    wynik = wnioskuj_wstecz(baza, cel, {}, zapytaj_z_dlaczego, slad)
+    print("Polecam:", wynik)
     print("Reguły:", " -> ".join(slad))
+    print("Jak doszedłem do wniosku?")
+    for krok in wyjasnij_jak(baza, slad):
+        print(" -", krok)
+    if wynik is not None:
+        print("Co to?", coto(baza, slad))
