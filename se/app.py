@@ -2,6 +2,8 @@
 import sys
 from pathlib import Path
 
+"""Do uruchomienia systemu"""
+# python -m streamlit run se/app.py
 import streamlit as st
 
 sys.path.insert(0, str(Path(__file__).parent / "se"))
