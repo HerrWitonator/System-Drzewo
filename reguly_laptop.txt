@@ -1,0 +1,20 @@
+REGUŁY DECYZYJNE — WYBÓR LAPTOPA
+
+Wniosek pośredni: klasa budżetowa (podstawowa, średnia, wysoka).
+Priorytet: grafika → gry / mobilność → biznes.
+
+R01. JEŻELI Budżet: do 3000 zł; Grafika=tak; Gry=tak, TO gamingowy_podstawowy — Laptop do lekkich gier — 16 GB RAM, SSD 512 GB, iGPU.
+R02. JEŻELI Budżet: do 3000 zł; Grafika=tak; Gry=nie, TO profesjonalny_podstawowy — Laptop do prostych projektów — 16 GB RAM, SSD 512 GB.
+R03. JEŻELI Budżet: do 3000 zł; Grafika=nie; Mobilność=tak, TO mobilny_studencki_podstawowy — Lekki laptop do nauki — 8 GB RAM, SSD 256 GB.
+R04. JEŻELI Budżet: do 3000 zł; Grafika=nie; Mobilność=nie; Biznes=tak, TO biznesowy_podstawowy — Laptop do pracy zdalnej — 8 GB RAM, SSD 512 GB.
+R05. JEŻELI Budżet: do 3000 zł; Grafika=nie; Mobilność=nie; Biznes=nie, TO biurowy_podstawowy — Laptop biurowy ekonomiczny — 8 GB RAM, SSD 256 GB.
+R06. JEŻELI Budżet: 3001–6000 zł; Grafika=tak; Gry=tak, TO gamingowy_sredni — Laptop gamingowy średniej klasy — 16 GB RAM, SSD 1 TB, dGPU.
+R07. JEŻELI Budżet: 3001–6000 zł; Grafika=tak; Gry=nie, TO profesjonalny_sredni — Laptop do grafiki / CAD — 32 GB RAM, SSD 1 TB.
+R08. JEŻELI Budżet: 3001–6000 zł; Grafika=nie; Mobilność=tak, TO mobilny_studencki_sredni — Ultrabook studencki — 16 GB RAM, SSD 512 GB.
+R09. JEŻELI Budżet: 3001–6000 zł; Grafika=nie; Mobilność=nie; Biznes=tak, TO biznesowy_sredni — Laptop biznesowy — 16 GB RAM, SSD 512 GB.
+R10. JEŻELI Budżet: 3001–6000 zł; Grafika=nie; Mobilność=nie; Biznes=nie, TO biurowy_sredni — Laptop biurowy komfortowy — 16 GB RAM, SSD 512 GB.
+R11. JEŻELI Budżet: powyżej 6000 zł; Grafika=tak; Gry=tak, TO gamingowy_wysoki — Laptop gamingowy high-end — 32 GB RAM, SSD 1 TB, dGPU.
+R12. JEŻELI Budżet: powyżej 6000 zł; Grafika=tak; Gry=nie, TO profesjonalny_wysoki — Mobilna stacja robocza — 32 GB RAM, SSD 1 TB, dGPU.
+R13. JEŻELI Budżet: powyżej 6000 zł; Grafika=nie; Mobilność=tak, TO mobilny_studencki_wysoki — Ultrabook premium — 32 GB RAM, SSD 1 TB.
+R14. JEŻELI Budżet: powyżej 6000 zł; Grafika=nie; Mobilność=nie; Biznes=tak, TO biznesowy_wysoki — Laptop biznesowy premium — 32 GB RAM, SSD 1 TB.
+R15. JEŻELI Budżet: powyżej 6000 zł; Grafika=nie; Mobilność=nie; Biznes=nie, TO biurowy_wysoki — Laptop biurowy premium — 32 GB RAM, SSD 1 TB.
