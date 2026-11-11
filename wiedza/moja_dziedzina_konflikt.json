@@ -1,0 +1,600 @@
+{
+    "nazwa": "Dobór laptopa",
+    "cel": "rekomendacja",
+    "atrybuty": {
+        "budzet": {
+            "typ": "liczba",
+            "pytanie": "Jaki jest maksymalny budżet na laptop (zł)?",
+            "zakres": [
+                1000,
+                10000
+            ]
+        },
+        "grafika": {
+            "typ": "wybor",
+            "pytanie": "Czy potrzebujesz wysokiej wydajności graficznej?",
+            "wartosci": [
+                "tak",
+                "nie"
+            ]
+        },
+        "gry": {
+            "typ": "wybor",
+            "pytanie": "Czy laptop ma służyć głównie do gier?",
+            "wartosci": [
+                "tak",
+                "nie"
+            ]
+        },
+        "mobilnosc": {
+            "typ": "wybor",
+            "pytanie": "Czy wysoka mobilność laptopa jest ważna?",
+            "wartosci": [
+                "tak",
+                "nie"
+            ]
+        },
+        "biznes": {
+            "typ": "wybor",
+            "pytanie": "Czy laptop ma służyć do pracy biznesowej?",
+            "wartosci": [
+                "tak",
+                "nie"
+            ]
+        },
+        "klasa_budzetowa": {
+            "typ": "wniosek",
+            "wartosci": [
+                "podstawowa",
+                "srednia",
+                "wysoka"
+            ]
+        },
+        "rekomendacja": {
+            "typ": "wniosek",
+            "wartosci": [
+                "gamingowy_podstawowy",
+                "profesjonalny_podstawowy",
+                "mobilny_studencki_podstawowy",
+                "biznesowy_podstawowy",
+                "biurowy_podstawowy",
+                "gamingowy_sredni",
+                "profesjonalny_sredni",
+                "mobilny_studencki_sredni",
+                "biznesowy_sredni",
+                "biurowy_sredni",
+                "gamingowy_wysoki",
+                "profesjonalny_wysoki",
+                "mobilny_studencki_wysoki",
+                "biznesowy_wysoki",
+                "biurowy_wysoki"
+            ]
+        },
+        "profil_wydajnosci": {
+            "typ": "wniosek",
+            "wartosci": [
+                "gamingowy",
+                "profesjonalny",
+                "standardowy"
+            ]
+        }
+    },
+    "reguly": [
+        {
+            "id": "R1",
+            "jesli": [
+                [
+                    "budzet",
+                    "<=",
+                    3000
+                ]
+            ],
+            "to": [
+                "klasa_budzetowa",
+                "podstawowa"
+            ],
+            "metafora": "Budżet do 3000 zł oznacza klasę podstawową."
+        },
+        {
+            "id": "R2",
+            "jesli": [
+                [
+                    "budzet",
+                    ">",
+                    3000
+                ],
+                [
+                    "budzet",
+                    "<=",
+                    6000
+                ]
+            ],
+            "to": [
+                "klasa_budzetowa",
+                "srednia"
+            ],
+            "metafora": "Budżet powyżej 3000 zł i do 6000 zł oznacza klasę średnią."
+        },
+        {
+            "id": "R3",
+            "jesli": [
+                [
+                    "budzet",
+                    ">",
+                    6000
+                ]
+            ],
+            "to": [
+                "klasa_budzetowa",
+                "wysoka"
+            ],
+            "metafora": "Budżet powyżej 6000 zł oznacza klasę wysoką."
+        },
+        {
+            "id": "R4",
+            "jesli": [
+                [
+                    "grafika",
+                    "==",
+                    "tak"
+                ],
+                [
+                    "gry",
+                    "==",
+                    "tak"
+                ]
+            ],
+            "to": [
+                "profil_wydajnosci",
+                "gamingowy"
+            ],
+            "metafora": "Wysokie wymagania graficzne i gry wskazują profil gamingowy."
+        },
+        {
+            "id": "R5",
+            "jesli": [
+                [
+                    "grafika",
+                    "==",
+                    "tak"
+                ],
+                [
+                    "gry",
+                    "==",
+                    "nie"
+                ]
+            ],
+            "to": [
+                "profil_wydajnosci",
+                "profesjonalny"
+            ],
+            "metafora": "Wysokie wymagania graficzne bez gier wskazują profil profesjonalny."
+        },
+        {
+            "id": "R6",
+            "jesli": [
+                [
+                    "grafika",
+                    "==",
+                    "nie"
+                ]
+            ],
+            "to": [
+                "profil_wydajnosci",
+                "standardowy"
+            ],
+            "metafora": "Brak wysokich wymagań graficznych pozwala wybrać profil standardowy."
+        },
+        {
+            "id": "R7",
+            "jesli": [
+                [
+                    "klasa_budzetowa",
+                    "==",
+                    "podstawowa"
+                ],
+                [
+                    "profil_wydajnosci",
+                    "==",
+                    "gamingowy"
+                ]
+            ],
+            "to": [
+                "rekomendacja",
+                "gamingowy_podstawowy"
+            ],
+            "metafora": "Laptop do lekkich gier. Dobór zgodny z klasą budżetową i odpowiedziami na pytania.",
+            "coto": "Laptop do lekkich gier: 16 GB RAM, SSD 512 GB, iGPU."
+        },
+        {
+            "id": "R8",
+            "jesli": [
+                [
+                    "klasa_budzetowa",
+                    "==",
+                    "podstawowa"
+                ],
+                [
+                    "profil_wydajnosci",
+                    "==",
+                    "profesjonalny"
+                ]
+            ],
+            "to": [
+                "rekomendacja",
+                "profesjonalny_podstawowy"
+            ],
+            "metafora": "Laptop do prostych projektów. Dobór zgodny z klasą budżetową i odpowiedziami na pytania.",
+            "coto": "Laptop do prostych projektów: 16 GB RAM, SSD 512 GB."
+        },
+        {
+            "id": "R9",
+            "jesli": [
+                [
+                    "klasa_budzetowa",
+                    "==",
+                    "podstawowa"
+                ],
+                [
+                    "profil_wydajnosci",
+                    "==",
+                    "standardowy"
+                ],
+                [
+                    "mobilnosc",
+                    "==",
+                    "tak"
+                ]
+            ],
+            "to": [
+                "rekomendacja",
+                "mobilny_studencki_podstawowy"
+            ],
+            "metafora": "Lekki laptop do nauki. Dobór zgodny z klasą budżetową i odpowiedziami na pytania.",
+            "coto": "Lekki laptop do nauki: 8 GB RAM, SSD 256 GB."
+        },
+        {
+            "id": "R10",
+            "jesli": [
+                [
+                    "klasa_budzetowa",
+                    "==",
+                    "podstawowa"
+                ],
+                [
+                    "profil_wydajnosci",
+                    "==",
+                    "standardowy"
+                ],
+                [
+                    "mobilnosc",
+                    "==",
+                    "nie"
+                ],
+                [
+                    "biznes",
+                    "==",
+                    "tak"
+                ]
+            ],
+            "to": [
+                "rekomendacja",
+                "biznesowy_podstawowy"
+            ],
+            "metafora": "Laptop do pracy zdalnej. Dobór zgodny z klasą budżetową i odpowiedziami na pytania.",
+            "coto": "Laptop do pracy zdalnej: 8 GB RAM, SSD 512 GB."
+        },
+        {
+            "id": "R11",
+            "jesli": [
+                [
+                    "klasa_budzetowa",
+                    "==",
+                    "podstawowa"
+                ],
+                [
+                    "profil_wydajnosci",
+                    "==",
+                    "standardowy"
+                ],
+                [
+                    "mobilnosc",
+                    "==",
+                    "nie"
+                ],
+                [
+                    "biznes",
+                    "==",
+                    "nie"
+                ]
+            ],
+            "to": [
+                "rekomendacja",
+                "biurowy_podstawowy"
+            ],
+            "metafora": "Laptop biurowy ekonomiczny. Dobór zgodny z klasą budżetową i odpowiedziami na pytania.",
+            "coto": "Laptop biurowy ekonomiczny: 8 GB RAM, SSD 256 GB."
+        },
+        {
+            "id": "R12",
+            "jesli": [
+                [
+                    "klasa_budzetowa",
+                    "==",
+                    "srednia"
+                ],
+                [
+                    "profil_wydajnosci",
+                    "==",
+                    "gamingowy"
+                ]
+            ],
+            "to": [
+                "rekomendacja",
+                "gamingowy_sredni"
+            ],
+            "metafora": "Laptop gamingowy średniej klasy. Dobór zgodny z klasą budżetową i odpowiedziami na pytania.",
+            "coto": "Laptop gamingowy średniej klasy: 16 GB RAM, SSD 1 TB, dGPU."
+        },
+        {
+            "id": "R13",
+            "jesli": [
+                [
+                    "klasa_budzetowa",
+                    "==",
+                    "srednia"
+                ],
+                [
+                    "profil_wydajnosci",
+                    "==",
+                    "profesjonalny"
+                ]
+            ],
+            "to": [
+                "rekomendacja",
+                "profesjonalny_sredni"
+            ],
+            "metafora": "Laptop do grafiki / CAD. Dobór zgodny z klasą budżetową i odpowiedziami na pytania.",
+            "coto": "Laptop do grafiki / CAD: 32 GB RAM, SSD 1 TB."
+        },
+        {
+            "id": "R14",
+            "jesli": [
+                [
+                    "klasa_budzetowa",
+                    "==",
+                    "srednia"
+                ],
+                [
+                    "profil_wydajnosci",
+                    "==",
+                    "standardowy"
+                ],
+                [
+                    "mobilnosc",
+                    "==",
+                    "tak"
+                ]
+            ],
+            "to": [
+                "rekomendacja",
+                "mobilny_studencki_sredni"
+            ],
+            "metafora": "Ultrabook studencki. Dobór zgodny z klasą budżetową i odpowiedziami na pytania.",
+            "coto": "Ultrabook studencki: 16 GB RAM, SSD 512 GB."
+        },
+        {
+            "id": "R15",
+            "jesli": [
+                [
+                    "klasa_budzetowa",
+                    "==",
+                    "srednia"
+                ],
+                [
+                    "profil_wydajnosci",
+                    "==",
+                    "standardowy"
+                ],
+                [
+                    "mobilnosc",
+                    "==",
+                    "nie"
+                ],
+                [
+                    "biznes",
+                    "==",
+                    "tak"
+                ]
+            ],
+            "to": [
+                "rekomendacja",
+                "biznesowy_sredni"
+            ],
+            "metafora": "Laptop biznesowy. Dobór zgodny z klasą budżetową i odpowiedziami na pytania.",
+            "coto": "Laptop biznesowy: 16 GB RAM, SSD 512 GB."
+        },
+        {
+            "id": "R16",
+            "jesli": [
+                [
+                    "klasa_budzetowa",
+                    "==",
+                    "srednia"
+                ],
+                [
+                    "profil_wydajnosci",
+                    "==",
+                    "standardowy"
+                ],
+                [
+                    "mobilnosc",
+                    "==",
+                    "nie"
+                ],
+                [
+                    "biznes",
+                    "==",
+                    "nie"
+                ]
+            ],
+            "to": [
+                "rekomendacja",
+                "biurowy_sredni"
+            ],
+            "metafora": "Laptop biurowy komfortowy. Dobór zgodny z klasą budżetową i odpowiedziami na pytania.",
+            "coto": "Laptop biurowy komfortowy: 16 GB RAM, SSD 512 GB."
+        },
+        {
+            "id": "R17",
+            "jesli": [
+                [
+                    "klasa_budzetowa",
+                    "==",
+                    "wysoka"
+                ],
+                [
+                    "profil_wydajnosci",
+                    "==",
+                    "gamingowy"
+                ]
+            ],
+            "to": [
+                "rekomendacja",
+                "gamingowy_wysoki"
+            ],
+            "metafora": "Laptop gamingowy high-end. Dobór zgodny z klasą budżetową i odpowiedziami na pytania.",
+            "coto": "Laptop gamingowy high-end: 32 GB RAM, SSD 1 TB, dGPU."
+        },
+        {
+            "id": "R18",
+            "jesli": [
+                [
+                    "klasa_budzetowa",
+                    "==",
+                    "wysoka"
+                ],
+                [
+                    "profil_wydajnosci",
+                    "==",
+                    "profesjonalny"
+                ]
+            ],
+            "to": [
+                "rekomendacja",
+                "profesjonalny_wysoki"
+            ],
+            "metafora": "Mobilna stacja robocza. Dobór zgodny z klasą budżetową i odpowiedziami na pytania.",
+            "coto": "Mobilna stacja robocza: 32 GB RAM, SSD 1 TB, dGPU."
+        },
+        {
+            "id": "R19",
+            "jesli": [
+                [
+                    "klasa_budzetowa",
+                    "==",
+                    "wysoka"
+                ],
+                [
+                    "profil_wydajnosci",
+                    "==",
+                    "standardowy"
+                ],
+                [
+                    "mobilnosc",
+                    "==",
+                    "tak"
+                ]
+            ],
+            "to": [
+                "rekomendacja",
+                "mobilny_studencki_wysoki"
+            ],
+            "metafora": "Ultrabook premium. Dobór zgodny z klasą budżetową i odpowiedziami na pytania.",
+            "coto": "Ultrabook premium: 32 GB RAM, SSD 1 TB."
+        },
+        {
+            "id": "R20",
+            "jesli": [
+                [
+                    "klasa_budzetowa",
+                    "==",
+                    "wysoka"
+                ],
+                [
+                    "profil_wydajnosci",
+                    "==",
+                    "standardowy"
+                ],
+                [
+                    "mobilnosc",
+                    "==",
+                    "nie"
+                ],
+                [
+                    "biznes",
+                    "==",
+                    "tak"
+                ]
+            ],
+            "to": [
+                "rekomendacja",
+                "biznesowy_wysoki"
+            ],
+            "metafora": "Laptop biznesowy premium. Dobór zgodny z klasą budżetową i odpowiedziami na pytania.",
+            "coto": "Laptop biznesowy premium: 32 GB RAM, SSD 1 TB."
+        },
+        {
+            "id": "R21",
+            "jesli": [
+                [
+                    "klasa_budzetowa",
+                    "==",
+                    "wysoka"
+                ],
+                [
+                    "profil_wydajnosci",
+                    "==",
+                    "standardowy"
+                ],
+                [
+                    "mobilnosc",
+                    "==",
+                    "nie"
+                ],
+                [
+                    "biznes",
+                    "==",
+                    "nie"
+                ]
+            ],
+            "to": [
+                "rekomendacja",
+                "biurowy_wysoki"
+            ],
+            "metafora": "Laptop biurowy premium. Dobór zgodny z klasą budżetową i odpowiedziami na pytania.",
+            "coto": "Laptop biurowy premium: 32 GB RAM, SSD 1 TB."
+        },
+        {
+            "id": "R22",
+            "jesli": [
+                [
+                    "klasa_budzetowa",
+                    "==",
+                    "srednia"
+                ],
+                [
+                    "profil_wydajnosci",
+                    "==",
+                    "profesjonalny"
+                ]
+            ],
+            "to": [
+                "rekomendacja",
+                "gamingowy_sredni"
+            ],
+            "metafora": "Test konfliktu z regułą R13.",
+            "coto": "Alternatywna rekomendacja testowa."
+        }
+    ]
+}
